@@ -1,0 +1,18 @@
+{% extends "base.html" %} {% block content %}
+<h1>Your Tasks</h1>
+<a href="{{ url_for('main.create_task') }}" class="btn btn-primary mb-3"
+  >New Task</a
+>
+<div class="list-group">
+  {% for task in tasks %}
+  <div class="list-group-item">
+    <h5>{{ task.title }}</h5>
+    <p>{{ task.description }}</p>
+    <small
+      >Due: {{ task.due_date.strftime('%Y-%m-%d') }} | Priority: {{
+      task.priority }}</small
+    >
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}
