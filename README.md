@@ -1,15 +1,6 @@
-Here's a **professional, comprehensive README.md** for your Flask TaskMaster Pro project following industry best practices:
-
-````markdown
 # TaskMaster Pro - Flask Task Management System
 
-![Python](https://img.shields.io/badge/python-3.8%2B-blue)
-![Flask](https://img.shields.io/badge/flask-2.0%2B-green)
-![License](https://img.shields.io/badge/license-MIT-orange)
-
 A full-featured task management web application built with Flask, featuring user authentication, task organization, and productivity tools.
-
-![TaskMaster Pro Screenshot](docs/screenshot.png) _(Replace with actual screenshot)_
 
 ## Features
 
@@ -63,9 +54,10 @@ A full-featured task management web application built with Flask, featuring user
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/taskmaster-pro.git
-   cd taskmaster-pro
+   git clone https://github.com/bereket-7/TaskMasterPro.git
+   cd TaskMaskterPro
    ```
+
 ````
 
 2. Create and activate virtual environment:
@@ -176,35 +168,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Contact
 
-Project Maintainer: [Your Name]  
-Email: your.email@example.com  
-Issue Tracker: [GitHub Issues](https://github.com/yourusername/taskmaster-pro/issues)
-
----
-
-_For more details, check our [Wiki](https://github.com/yourusername/taskmaster-pro/wiki) or [Project Board](https://github.com/yourusername/taskmaster-pro/projects/1)._
-
-```
-
-### Key Professional Touches:
-1. **Badges** - Visual indicators for key project info
-2. **Feature Categorization** - Separates core vs advanced features
-3. **Detailed Tech Stack** - Clearly lists all technologies
-4. **Structured Installation** - Step-by-step with code blocks
-5. **API Documentation** - Ready for future expansion
-6. **Multiple Deployment Options** - Covers different scenarios
-7. **Complete Contributing Guide** - Encourages collaboration
-8. **Visual Elements** - Space for screenshots/diagrams
-
-### How to Use:
-1. Replace placeholder values (GitHub URLs, contact info)
-2. Add actual screenshots to `/docs/` folder
-3. Update feature list as you implement more functionality
-4. Keep it updated as the project evolves
-
-Would you like me to add any specific section in more detail? For example:
-- Detailed API documentation format
-- Screenshot guidelines
-- Testing methodology
-- Performance benchmarks
-```
+Project Maintainer: Bereket honelign
+Email: berekethonelign@gmail.com
+Issue Tracker: [GitHub Issues](https://github.com/bereket-7/TaskMasterPro/issues)
+````
