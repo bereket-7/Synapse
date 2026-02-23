@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-5">
+        <div class="card p-4">
+            <h2 class="text-center mb-4 fw-bold">New Category</h2>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {{ form.name.label(class="form-label") }}
+                    {{ form.name(class="form-control") }}
+                </div>
+                <div class="mb-4">
+                    {{ form.color.label(class="form-label") }}
+                    {{ form.color(class="form-control", type="color") }}
+                    <div class="form-text">Pick a color for your category tabs.</div>
+                </div>
+                <div class="d-grid gap-2">
+                    {{ form.submit(class="btn btn-primary") }}
+                    <a href="{{ url_for('tasks.create_task') }}" class="btn btn-outline-secondary">Back to Task</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
