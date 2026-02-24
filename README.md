@@ -1,4 +1,4 @@
-# TaskMaster Pro - Flask Task Management System
+# Synapse - Flask Task Management System
 
 A full-featured task management web application built with Flask, featuring user authentication, task organization, and productivity tools.
 
