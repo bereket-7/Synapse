@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from datetime import datetime
+import datetime
 from flask_login import login_required, current_user
 from app import db
 from app.models import Task
@@ -22,7 +22,7 @@ def index():
     overdue_tasks = Task.query.filter(
         Task.user_id == current_user.id,
         Task.status != 'Completed',
-        Task.due_date < datetime.utcnow()
+        Task.due_date < datetime.datetime.utcnow()
     ).count()
 
     # Data for Chart.js (tasks by priority)

@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo, Length
+from wtforms.validators import DataRequired, Email, EqualTo, Length, Optional
 from wtforms import TextAreaField, SelectField, DateTimeField
 
 
@@ -29,7 +29,7 @@ class CategoryForm(FlaskForm):
 class TaskForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     description = TextAreaField('Description')
-    due_date = DateTimeField('Due Date', format='%Y-%m-%d %H:%M')
+    due_date = DateTimeField('Due Date', format='%Y-%m-%d %H:%M', validators=[Optional()])
     priority = SelectField('Priority', choices=[
         ('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')], default='Medium')
     category_id = SelectField('Category', coerce=int)
