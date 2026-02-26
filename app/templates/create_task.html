@@ -1,57 +1,64 @@
-{% extends "base.html" %} {% block content %}
-<div class="row justify-content-center">
-  <div class="col-md-8">
-    <div class="card p-4">
-      <h2 class="mb-4 fw-bold">Create New Task</h2>
-      <form method="POST">
-        {{ form.hidden_tag() }}
-        <div class="mb-3">
-          {{ form.title.label(class="form-label") }} {{
-          form.title(class="form-control form-control-lg", placeholder="Enter
-          task title...") }} {% for error in form.title.errors %}
-          <span class="text-danger small">{{ error }}</span>
-          {% endfor %}
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center py-5">
+    <div class="col-md-8">
+        <div class="glass-card p-5">
+            <div class="d-flex align-items-center mb-5">
+                <div class="icon-box me-3" style="background: rgba(99, 102, 241, 0.1); padding: 15px; border-radius: 15px;">
+                    <i class="fas fa-plus-circle fs-3 text-primary"></i>
+                </div>
+                <div>
+                    <h2 class="fw-bold text-main mb-0">Create New Task</h2>
+                    <p class="text-muted small mb-0">Define your next milestone</p>
+                </div>
+            </div>
+
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-4">
+                    {{ form.title.label(class="form-label text-muted small fw-bold text-uppercase") }}
+                    {{ form.title(class="form-control form-control-modern form-control-lg", placeholder="Enter task title...") }}
+                    {% for error in form.title.errors %}
+                        <span class="text-danger small mt-1 d-block">{{ error }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="mb-4">
+                    {{ form.description.label(class="form-label text-muted small fw-bold text-uppercase") }}
+                    {{ form.description(class="form-control form-control-modern", rows=4, placeholder="Describe the task details...") }}
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-4">
+                        {{ form.due_date.label(class="form-label text-muted small fw-bold text-uppercase") }}
+                        {{ form.due_date(class="form-control form-control-modern", type="datetime-local") }}
+                        {% for error in form.due_date.errors %}
+                            <span class="text-danger small mt-1 d-block">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        {{ form.priority.label(class="form-label text-muted small fw-bold text-uppercase") }}
+                        {{ form.priority(class="form-select form-control-modern") }}
+                    </div>
+                </div>
+
+                <div class="mb-5">
+                    {{ form.category_id.label(class="form-label text-muted small fw-bold text-uppercase") }}
+                    <div class="d-flex gap-2">
+                        {{ form.category_id(class="form-select form-control-modern flex-grow-1") }}
+                        <a href="{{ url_for('tasks.create_category') }}" class="btn btn-secondary-modern d-flex align-items-center" title="New Category">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="d-flex gap-3 pt-4 border-top border-secondary border-opacity-10">
+                    {{ form.submit(class="btn btn-modern px-5") }}
+                    <a href="{{ url_for('tasks.list_tasks') }}" class="btn btn-secondary-modern px-4">Cancel</a>
+                </div>
+            </form>
         </div>
-        <div class="mb-3">
-          {{ form.description.label(class="form-label") }} {{
-          form.description(class="form-control", rows=4) }}
-        </div>
-        <div class="row">
-          <div class="col-md-6 mb-3">
-            {{ form.due_date.label(class="form-label") }} {{
-            form.due_date(class="form-control", placeholder="YYYY-MM-DD HH:MM")
-            }} {% for error in form.due_date.errors %}
-            <span class="text-danger small">{{ error }}</span>
-            {% endfor %}
-          </div>
-          <div class="col-md-6 mb-3">
-            {{ form.priority.label(class="form-label") }} {{
-            form.priority(class="form-select") }}
-          </div>
-        </div>
-        <div class="mb-4">
-          {{ form.category_id.label(class="form-label") }} {{
-          form.category_id(class="form-select") }}
-          <div class="form-text mt-1 text-end">
-            <small
-              ><a
-                href="{{ url_for('tasks.create_category') }}"
-                class="text-decoration-none"
-                >+ Create New Category</a
-              ></small
-            >
-          </div>
-        </div>
-        <div class="d-flex gap-2">
-          {{ form.submit(class="btn btn-primary px-4") }}
-          <a
-            href="{{ url_for('tasks.list_tasks') }}"
-            class="btn btn-outline-secondary px-4"
-            >Cancel</a
-          >
-        </div>
-      </form>
     </div>
-  </div>
 </div>
 {% endblock %}
