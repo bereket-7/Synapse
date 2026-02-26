@@ -8,18 +8,18 @@
                 <div class="d-inline-block p-3 rounded-circle mb-3" style="background: rgba(99, 102, 241, 0.1); border: 1px solid rgba(99, 102, 241, 0.2);">
                     <i class="fas fa-lock fs-3 text-primary"></i>
                 </div>
-                <h2 class="fw-bold text-white">Welcome Back</h2>
+                <h2 class="fw-bold text-main">Welcome Back</h2>
                 <p class="text-muted">Enter your credentials to continue</p>
             </div>
             
             <form method="POST">
                 {{ form.hidden_tag() }}
                 <div class="mb-4">
-                    {{ form.username.label(class="form-label text-white-50 small fw-bold text-uppercase") }}
+                    {{ form.username.label(class="form-label text-muted small fw-bold text-uppercase") }}
                     {{ form.username(class="form-control form-control-modern", placeholder="Username") }}
                 </div>
                 <div class="mb-4">
-                    {{ form.password.label(class="form-label text-white-50 small fw-bold text-uppercase") }}
+                    {{ form.password.label(class="form-label text-muted small fw-bold text-uppercase") }}
                     {{ form.password(class="form-control form-control-modern", placeholder="••••••••") }}
                 </div>
                 <div class="d-grid gap-3 mt-5">
@@ -29,7 +29,7 @@
             </form>
             
             <div class="text-center mt-4">
-                <a href="#" class="text-white-50 small text-decoration-none hover-white">Forgot password?</a>
+                <a href="#" class="text-muted small text-decoration-none transition-all">Forgot password?</a>
             </div>
         </div>
     </div>
