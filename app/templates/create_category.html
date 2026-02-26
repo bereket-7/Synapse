@@ -1,24 +1,32 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-5">
-        <div class="card p-4">
-            <h2 class="text-center mb-4 fw-bold">New Category</h2>
+<div class="row justify-content-center py-5">
+    <div class="col-md-6">
+        <div class="glass-card p-5">
+            <div class="d-flex align-items-center mb-5">
+                <div class="icon-box me-3" style="background: rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 15px;">
+                    <i class="fas fa-tags fs-3 text-secondary"></i>
+                </div>
+                <div>
+                    <h2 class="fw-bold text-white mb-0">New Category</h2>
+                    <p class="text-white-50 small mb-0">Group your tasks effectively</p>
+                </div>
+            </div>
+
             <form method="POST">
                 {{ form.hidden_tag() }}
-                <div class="mb-3">
-                    {{ form.name.label(class="form-label") }}
-                    {{ form.name(class="form-control") }}
-                </div>
                 <div class="mb-4">
-                    {{ form.color.label(class="form-label") }}
-                    {{ form.color(class="form-control", type="color") }}
-                    <div class="form-text">Pick a color for your category tabs.</div>
+                    {{ form.name.label(class="form-label text-white-50 small fw-bold text-uppercase") }}
+                    {{ form.name(class="form-control form-control-modern", placeholder="Category name (e.g. Work, Personal)") }}
                 </div>
-                <div class="d-grid gap-2">
-                    {{ form.submit(class="btn btn-primary") }}
-                    <a href="{{ url_for('tasks.create_task') }}" class="btn btn-outline-secondary">Back to Task</a>
+                <div class="mb-5">
+                    {{ form.color.label(class="form-label text-white-50 small fw-bold text-uppercase") }}
+                    {{ form.color(class="form-control form-control-modern", type="color", style="height: 50px; padding: 5px;") }}
+                </div>
+                <div class="d-flex gap-3">
+                    {{ form.submit(class="btn btn-modern px-5") }}
+                    <a href="{{ url_for('tasks.create_task') }}" class="btn btn-secondary-modern px-4">Back</a>
                 </div>
             </form>
         </div>
