@@ -2,74 +2,104 @@
 
 {% block content %}
 <div class="mb-5">
-    <h2 class="fw-bold"><i class="fas fa-chart-pie me-2 text-primary"></i>Productivity Dashboard</h2>
-    <p class="text-muted">A summary of your performance and task metrics.</p>
+    <h2 class="fw-bold mb-1 text-white">Performance Insights</h2>
+    <p class="text-white-50 small mb-0">Overview of your productivity and task distribution</p>
 </div>
 
 <div class="row g-4 mb-5">
     <div class="col-md-3">
-        <div class="card p-3 text-center bg-white shadow-sm border-0 border-top border-primary border-4">
-            <h6 class="text-muted text-uppercase small">Total Tasks</h6>
-            <h2 class="fw-bold">{{ stats.total }}</h2>
+        <div class="glass-card p-4 text-center border-0" style="background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(99, 102, 241, 0.05)); border-left: 4px solid var(--primary) !important;">
+            <div class="text-white-50 small fw-bold text-uppercase mb-2">Total Tasks</div>
+            <h2 class="display-5 fw-bold text-white mb-0">{{ stats.total }}</h2>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card p-3 text-center bg-white shadow-sm border-0 border-top border-success border-4">
-            <h6 class="text-muted text-uppercase small">Completed</h6>
-            <h2 class="fw-bold">{{ stats.completed }}</h2>
+        <div class="glass-card p-4 text-center border-0" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(16, 185, 129, 0.05)); border-left: 4px solid var(--secondary) !important;">
+            <div class="text-white-50 small fw-bold text-uppercase mb-2">Completed</div>
+            <h2 class="display-5 fw-bold text-white mb-0">{{ stats.completed }}</h2>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card p-3 text-center bg-white shadow-sm border-0 border-top border-info border-4">
-            <h6 class="text-muted text-uppercase small">Success Rate</h6>
-            <h2 class="fw-bold">{{ stats.rate }}%</h2>
+        <div class="glass-card p-4 text-center border-0" style="background: linear-gradient(135deg, rgba(244, 63, 94, 0.2), rgba(244, 63, 94, 0.05)); border-left: 4px solid var(--accent) !important;">
+            <div class="text-white-50 small fw-bold text-uppercase mb-2">Overdue</div>
+            <h2 class="display-5 fw-bold text-white mb-0">{{ stats.overdue }}</h2>
         </div>
     </div>
     <div class="col-md-3">
-        <div class="card p-3 text-center bg-white shadow-sm border-0 border-top border-danger border-4">
-            <h6 class="text-muted text-uppercase small">Overdue</h6>
-            <h2 class="fw-bold">{{ stats.overdue }}</h2>
+        <div class="glass-card p-4 text-center border-0" style="background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(168, 85, 247, 0.05)); border-left: 4px solid #a855f7 !important;">
+            <div class="text-white-50 small fw-bold text-uppercase mb-2">Success Rate</div>
+            <h2 class="display-5 fw-bold text-white mb-0">{{ stats.rate }}%</h2>
         </div>
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-8">
-        <div class="card p-4 h-100 shadow-sm border-0">
-            <h5 class="fw-bold mb-4">Task Priority Distribution</h5>
-            <canvas id="priorityChart" height="150"></canvas>
+<div class="row g-4">
+    <div class="col-lg-8">
+        <div class="glass-card p-4 border-0 h-100">
+            <h5 class="header-title mb-4 text-white fw-bold"><i class="fas fa-chart-line me-2 text-primary"></i>Task Distribution</h5>
+            <div style="height: 350px;">
+                <canvas id="priorityChart"></canvas>
+            </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="card p-4 h-100 shadow-sm border-0 bg-primary text-white">
-            <h5 class="fw-bold mb-3">Daily Tip</h5>
-            <p>Focus on your High Priority tasks first thing in the morning when your energy levels are highest.</p>
-            <div class="mt-auto text-end">
-                <i class="fas fa-lightbulb fa-3x opacity-25"></i>
+    <div class="col-lg-4">
+        <div class="glass-card p-4 border-0 h-100">
+            <h5 class="header-title mb-4 text-white fw-bold"><i class="fas fa-tasks me-2 text-secondary"></i>Quick Actions</h5>
+            <div class="d-grid gap-3">
+                <a href="{{ url_for('tasks.create_task') }}" class="btn btn-modern d-flex align-items-center justify-content-center py-3">
+                    <i class="fas fa-plus-circle me-2"></i>Create New Task
+                </a>
+                <a href="{{ url_for('tasks.list_tasks') }}" class="btn btn-secondary-modern d-flex align-items-center justify-content-center py-3">
+                    <i class="fas fa-external-link-alt me-2"></i>Go to Board
+                </a>
+            </div>
+            <div class="mt-5 p-4 rounded-4" style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.1);">
+                <p class="text-white-50 small mb-0 text-center italic">"Productivity is never an accident. It is always the result of a commitment to excellence, intelligent planning, and focused effort."</p>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Chart.js -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('priorityChart').getContext('2d');
-    const priorityChart = new Chart(ctx, {
+    
+    // Modern Gradient for Chart
+    const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+    gradient.addColorStop(0, 'rgba(99, 102, 241, 0.8)');
+    gradient.addColorStop(1, 'rgba(99, 102, 241, 0.1)');
+
+    new Chart(ctx, {
         type: 'bar',
         data: {
             labels: {{ stats.priority_labels|tojson }},
             datasets: [{
-                label: 'Number of Tasks',
+                label: 'Tasks by Priority',
                 data: {{ stats.priority_counts|tojson }},
-                backgroundColor: ['#e74c3c', '#f1c40f', '#3498db'],
-                borderRadius: 8
+                backgroundColor: gradient,
+                borderColor: '#6366f1',
+                borderWidth: 2,
+                borderRadius: 10,
+                hoverBackgroundColor: '#4f46e5'
             }]
         },
         options: {
             responsive: true,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true, grid: { display: false } }, x: { grid: { display: false } } }
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                    ticks: { color: '#94a3b8' }
+                },
+                x: {
+                    grid: { display: false },
+                    ticks: { color: '#94a3b8' }
+                }
+            }
         }
     });
 </script>
