@@ -30,13 +30,13 @@
   <body>
     <div class="mesh-gradient"></div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark navbar-modern sticky-top">
+    <nav id="main-navbar" class="navbar navbar-expand-lg navbar-modern sticky-top">
       <div class="container">
         <a class="navbar-brand fw-bold d-flex align-items-center" href="{{ url_for('tasks.list_tasks') if current_user.is_authenticated else url_for('tasks.index') }}">
           <div class="logo-icon me-2" style="background: var(--primary); padding: 5px 10px; border-radius: 10px; box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);">
-            <i class="fas fa-brain"></i>
+            <i class="fas fa-brain text-white"></i>
           </div>
-          <span style="letter-spacing: 1px;">SYNAPSE</span>
+          <span class="text-main" style="letter-spacing: 1px;">SYNAPSE</span>
         </a>
         
         <div class="d-flex align-items-center me-2 d-lg-none">
@@ -57,22 +57,22 @@
             </li>
             {% if current_user.is_authenticated %}
             <li class="nav-item px-2">
-              <a class="nav-link {{ 'active text-primary' if request.endpoint == 'dashboard.index' }}" href="{{ url_for('dashboard.index') }}">
+              <a class="nav-link {{ 'active text-primary' if request.endpoint == 'dashboard.index' else 'text-muted' }}" href="{{ url_for('dashboard.index') }}">
                 <i class="fas fa-chart-pie me-1 small"></i> Dashboard
               </a>
             </li>
             <li class="nav-item px-2">
-              <a class="nav-link {{ 'active text-primary' if 'tasks' in request.endpoint }}" href="{{ url_for('tasks.list_tasks') }}">
+              <a class="nav-link {{ 'active text-primary' if 'tasks' in request.endpoint else 'text-muted' }}" href="{{ url_for('tasks.list_tasks') }}">
                 <i class="fas fa-columns me-1 small"></i> Board
               </a>
             </li>
             <li class="nav-item dropdown ms-lg-3">
-              <a class="nav-link dropdown-toggle btn-secondary-modern py-2 px-3 d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+              <a class="nav-link dropdown-toggle btn-secondary-modern py-2 px-3 d-flex align-items-center text-main" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                 <img src="https://ui-avatars.com/api/?name={{ current_user.username }}&background=6366f1&color=fff" class="rounded-circle me-2" width="24" height="24" alt="avatar">
                 {{ current_user.username }}
               </a>
               <ul class="dropdown-menu dropdown-menu-end glass-card border-0 mt-2 p-2 shadow-lg">
-                <li><a class="dropdown-item rounded-3 text-white-50" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
+                <li><a class="dropdown-item rounded-3 text-muted" href="#"><i class="fas fa-cog me-2"></i>Settings</a></li>
                 <li><hr class="dropdown-divider border-secondary opacity-25"></li>
                 <li>
                   <a class="dropdown-item rounded-3 text-danger" href="{{ url_for('auth.logout') }}">
@@ -83,7 +83,7 @@
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link px-3" href="{{ url_for('auth.login') }}">Login</a>
+              <a class="nav-link px-3 text-muted" href="{{ url_for('auth.login') }}">Login</a>
             </li>
             <li class="nav-item ms-lg-2">
               <a class="btn btn-modern py-2" href="{{ url_for('auth.register') }}">Get Started</a>
