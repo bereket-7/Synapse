@@ -29,7 +29,7 @@ class CategoryForm(FlaskForm):
 class TaskForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     description = TextAreaField('Description')
-    due_date = DateTimeField('Due Date', format='%Y-%m-%d %H:%M', validators=[Optional()])
+    due_date = DateTimeField('Due Date', format='%Y-%m-%dT%H:%M', validators=[Optional()])
     priority = SelectField('Priority', choices=[
         ('Low', 'Low'), ('Medium', 'Medium'), ('High', 'High')], default='Medium')
     category_id = SelectField('Category', coerce=int)
